@@ -8,6 +8,9 @@ const path = require("path");
 const roomsRoute = require("./routes/roomsRoute");
 const usersRoute = require("./routes/usersRoute");
 const bookingsRoute = require("./routes/bookingsRoute");
+const cors = require("cors");
+
+app.use(cors());
 app.use(express.json());
 // Serve static files from the React frontend app
 // app.use(express.static(path.join("../" + __dirname, "client/public")));
