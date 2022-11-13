@@ -18,7 +18,7 @@ function Loginscreen() {
     }
     try {
       setloading(true);
-      const result = (await axios.post('/api/users/login', user)).data;
+      const result = (await axios.post('https://hotel-management-system-sigma.vercel.app/api/users/login', user)).data;
       setloading(false);
       localStorage.setItem('currentUser', JSON.stringify(result));
       window.location.href = '/home'
@@ -39,8 +39,8 @@ function Loginscreen() {
           <div className='col-md-5 mt-5 p-4'>
             {error && (<Error message='Invalid Credentials' />)}
             <div className='bs'>
-            <span><i class="fas fa-sign-in-alt"style={{fontSize:'30px', position:'absolute'}} ></i></span><h2>Login</h2>
-              <input type="text" className='form-control ' style={{marginBottom: '10px'}}placeholder='email'
+              <span><i class="fas fa-sign-in-alt" style={{ fontSize: '30px', position: 'absolute' }} ></i></span><h2>Login</h2>
+              <input type="text" className='form-control ' style={{ marginBottom: '10px' }} placeholder='email'
                 value={email} onChange={(e) => { setemail(e.target.value) }} />
               <input type="password" className='form-control ' placeholder='password'
                 value={password} onChange={(e) => { setpassword(e.target.value) }} />

@@ -25,7 +25,7 @@ function Profilescreen() {
                     <h1>isAdmin : {user.isAdmin ? 'YES' : 'NO'}</h1>
                 </TabPane>
                 <TabPane tab="Bookings" key="2">
-                    <MyBookings/>
+                    <MyBookings />
                 </TabPane>
             </Tabs>
         </div>
@@ -47,7 +47,7 @@ export function MyBookings() {
             try {
                 setloading(true);
                 const data = await (
-                    await axios.post("/api/bookings/getbookingsbyuserid", { userid: user._id })
+                    await axios.post("https://hotel-management-system-sigma.vercel.app/api/bookings/getbookingsbyuserid", { userid: user._id })
                 ).data;
                 console.log(data);
                 setbookings(data)
@@ -65,19 +65,19 @@ export function MyBookings() {
 
 
 
-    async function cancelBooking(bookingid,roomid){
-        try{
+    async function cancelBooking(bookingid, roomid) {
+        try {
             setloading(true)
-            const result= await(await axios.post("/api/bookings/cancelbooking",{bookingid,roomid})).data;
+            const result = await (await axios.post("https://hotel-management-system-sigma.vercel.app/api/bookings/cancelbooking", { bookingid, roomid })).data;
             console.log(result);
             setloading(false);
-            Swal.fire('Congrats','Your booking has been cancelled','success').then(result=>{
+            Swal.fire('Congrats', 'Your booking has been cancelled', 'success').then(result => {
                 window.location.reload()
             })
-        }catch(error){
+        } catch (error) {
             console.log(error);
             setloading(false);
-            Swal.fire('Oops','Something went wrong','error')
+            Swal.fire('Oops', 'Something went wrong', 'error')
         }
     }
     return (
@@ -92,13 +92,13 @@ export function MyBookings() {
                             <p><b>CheckIn</b>: {booking.fromdate}</p>
                             <p><b>Check Out</b>: {booking.todate}</p>
                             <p><b>Amount</b>: {booking.totalamount}</p>
-                            <p><b>Status</b>:{" "} 
-                            {booking.status=='cancelled'?(<Tag color="red">CANCELLED</Tag>):(<Tag color="green">CONFIRMED</Tag>)}
+                            <p><b>Status</b>:{" "}
+                                {booking.status == 'cancelled' ? (<Tag color="red">CANCELLED</Tag>) : (<Tag color="green">CONFIRMED</Tag>)}
                             </p>
-                            {booking.status !=='cancelled'&&(
+                            {booking.status !== 'cancelled' && (
                                 <div className="text-right">
-                                <button class='btn btn-primary' onClick={()=>{cancelBooking(booking._id,booking.roomid)}}>CANCEL BOOKING</button>
-                            </div>
+                                    <button class='btn btn-primary' onClick={() => { cancelBooking(booking._id, booking.roomid) }}>CANCEL BOOKING</button>
+                                </div>
                             )}
                         </div>
                     }))}

@@ -47,7 +47,7 @@ export function Bookings() {
         async function fetchData() {
             try {
                 const data = await (
-                    await axios.get("/api/bookings/getallbookings")
+                    await axios.get("https://hotel-management-system-sigma.vercel.app/api/bookings/getallbookings")
                 ).data;
                 setbookings(data)
                 setloading(false)
@@ -107,7 +107,7 @@ export function Rooms() {
         async function fetchData() {
             try {
                 const data = await (
-                    await axios.get("/api/rooms/getallrooms")
+                    await axios.get("https://hotel-management-system-sigma.vercel.app/api/rooms/getallrooms")
                 ).data;
                 setrooms(data);
                 console.log(data);
@@ -167,7 +167,7 @@ export function Users() {
         async function fetchData() {
             try {
                 const data = await (
-                    await axios.get("/api/users/getallusers")
+                    await axios.get("https://hotel-management-system-sigma.vercel.app/api/users/getallusers")
                 ).data;
                 setusers(data);
                 console.log(data);
@@ -244,7 +244,7 @@ export function Addroom() {
         try {
             setloading(true);
             const result = await (
-                await axios.post('/api/rooms/addroom', newroom)).data
+                await axios.post('https://hotel-management-system-sigma.vercel.app/api/rooms/addroom', newroom)).data
             console.log(result);
             setloading(false)
             Swal.fire('Congrats', "Your New Room Added Successfully", 'success').then(result => {

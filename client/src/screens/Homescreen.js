@@ -23,7 +23,7 @@ function Homescreen() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const data = (await axios.get('/api/rooms/getallrooms')).data;
+                const data = (await axios.get('https://hotel-management-system-sigma.vercel.app/api/rooms/getallrooms')).data;
                 setrooms(data);
                 setduplicaterooms(data);
                 setloading(false);
@@ -167,7 +167,7 @@ function Homescreen() {
                 s += max(1, j - badchar[txt[s + j].charCodeAt(0)]);
         }
     }
-    search(searchkey,"hotel")
+    search(searchkey, "hotel")
     console.log(search)
 
 

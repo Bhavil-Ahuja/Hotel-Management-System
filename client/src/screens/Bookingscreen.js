@@ -16,7 +16,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
 // ..
 AOS.init({
-    duration:1000
+    duration: 1000
 });
 const { RangePicker } = DatePicker;
 function Bookingscreen({ match }) {
@@ -42,7 +42,7 @@ function Bookingscreen({ match }) {
         async function fetchData() {
             try {
                 setloading(true);
-                const data = (await axios.post('/api/rooms/getroombyid', { roomid: params.roomid })).data;
+                const data = (await axios.post('https://hotel-management-system-sigma.vercel.app/api/rooms/getroombyid', { roomid: params.roomid })).data;
                 setroom(data);
                 setrent(data.rentperday);
                 setloading(false);
@@ -85,14 +85,14 @@ function Bookingscreen({ match }) {
         }
         try {
             setloading(true);
-            const result = await axios.post('/api/bookings/bookroom', bookingDetails)
+            const result = await axios.post('https://hotel-management-system-sigma.vercel.app/api/bookings/bookroom', bookingDetails)
             setloading(false);
-            Swal.fire('Congratulations','Your room booked successfully','success').then(result=>{
-                window.location.href='/profile'
+            Swal.fire('Congratulations', 'Your room booked successfully', 'success').then(result => {
+                window.location.href = '/profile'
             })
         } catch (error) {
             setloading(false);
-            Swal.fire('Oops','Something went wrong','error')
+            Swal.fire('Oops', 'Something went wrong', 'error')
         }
     }
 

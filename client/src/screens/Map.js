@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import axios from "axios"
 
-import { GoogleMap, withScriptjs, withGoogleMap,Marker,InfoWindow  } from 'react-google-maps'
+import { GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow } from 'react-google-maps'
 import mapstyle from '../mapStyle';
- 
+
 function Map() {
   const [rooms, setrooms] = useState([]);
   const [loading, setloading] = useState(true);
@@ -11,24 +11,24 @@ function Map() {
   const [selectedHotel, setSelectedHotel] = useState(null);
   useEffect(() => {
     async function fetchData() {
-        try {
-            const data = (await axios.get('/api/rooms/getallrooms')).data;
-            setrooms(data);
-            setloading(false);
-        }
-        catch (error) {
-            seterror(true);
-            console.log(error);
-            setloading(false);
-        }
+      try {
+        const data = (await axios.get('https://hotel-management-system-sigma.vercel.app/api/rooms/getallrooms')).data;
+        setrooms(data);
+        setloading(false);
+      }
+      catch (error) {
+        seterror(true);
+        console.log(error);
+        setloading(false);
+      }
 
     }
     fetchData();
-}, []);
+  }, []);
   return (
-    <GoogleMap defaultZoom={15} 
-    defaultCenter={{ lat: 27.7097158, lng: 85.3223556 }} 
-    defaultOptions={{ styles: mapstyle }}>
+    <GoogleMap defaultZoom={15}
+      defaultCenter={{ lat: 27.7097158, lng: 85.3223556 }}
+      defaultOptions={{ styles: mapstyle }}>
       {rooms.map((room) => (
         <Marker
           key={room._id} position={{
